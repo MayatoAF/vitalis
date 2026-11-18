@@ -8,7 +8,7 @@ PWA de cuidado diário para acompanhar **calorias, hidratação, carboidratos e 
 | --- | --- | --- |
 | ![Glicemia](docs/glicemia.webp) | ![Hidratação](docs/hidratacao.webp) | ![Progresso](docs/progresso-mobile.webp) |
 
-> **Demo online:** depois do deploy, o app fica disponível em GitHub Pages com HTTPS — necessário para instalar no Android e funcionar offline.
+> **Demo online:** https://mayatoaf.github.io/vitalis/ · **Código:** https://github.com/MayatoAF/vitalis
 
 ## O que o app faz
 
@@ -83,9 +83,18 @@ pnpm tunnel       # terminal 2 — baixa o cloudflared e imprime a URL https://�
 3. Menu **⋮ → Instalar app** (ou “Adicionar à tela inicial”).
 4. Abra pelo ícone uma vez, aguarde o precache e teste em **modo avião** — o app deve abrir e continuar salvando localmente.
 
-O túnel é temporário e fica público enquanto estiver ativo; os dados permanecem apenas no aparelho. Depois de instalado, o app continua abrindo offline mesmo com o túnel encerrado. Para uma instalação permanente, publique a pasta `dist/` em qualquer hospedagem estática HTTPS (Netlify, Vercel, GitHub Pages) — o build é 100% estático.
+O túnel é temporário e fica público enquanto estiver ativo; os dados permanecem apenas no aparelho. Depois de instalado, o app continua abrindo offline mesmo com o túnel encerrado. Este repositório já está publicado em **GitHub Pages** (HTTPS permanente), então o túnel serve apenas para testar o servidor local.
 
-> **Troca de endereço:** IndexedDB é isolado por origem. Dados criados em `http://192.168…` não aparecem em `https://…`. Exporte um backup JSON no endereço antigo (Ajustes → Dados) e importe no novo.
+> **Troca de endereço:** IndexedDB é isolado por origem. Dados criados em `http://192.168…` ou em um túnel antigo não aparecem em outro endereço. Exporte um backup JSON no endereço antigo (Ajustes → Dados) e importe no novo.
+
+### Publicação (GitHub Pages)
+
+- **Site:** https://mayatoaf.github.io/vitalis/
+- **Repositório:** https://github.com/MayatoAF/vitalis
+- `main` contém o código-fonte; `gh-pages` contém somente o build de `dist/`.
+- O workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) compila e publica automaticamente a cada push em `main` (ou execução manual em Actions).
+
+Para publicar manualmente: `pnpm build` e envie o conteúdo de `dist/` para a branch `gh-pages`.
 
 Build alternativo sem Vite/Rollup (útil em ambientes restritos):
 

@@ -14,7 +14,7 @@ import { join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 const CHROME = process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const BASE = process.argv[2] || 'http://127.0.0.1:5178';
+const BASE = (process.argv[2] || 'http://127.0.0.1:5178').replace(/\/+$/, '');
 const DEBUG_PORT = 9333;
 const LAN_ONLY = process.env.LAN_ONLY === '1';
 const OUT_DIR = join(process.cwd(), process.env.VERIFY_OUT || 'verification');
@@ -380,7 +380,7 @@ const main = async () => {
       `navigator.serviceWorker.getRegistration().then(async (reg) => {
         if (!reg) return 'SEM_REGISTRO';
         const keys = await caches.keys();
-        const names = keys.filter((key) => key.startsWith('vitalis-'));
+        const names = keys.filter((key) => key.startsWith('vitalis-precache-'));
         const cache = await caches.open(names[0]);
         const entries = await cache.keys();
         return JSON.stringify({ scope: reg.scope, active: !!reg.active, keys: names, entries: entries.length });
@@ -395,6 +395,8 @@ const main = async () => {
     }
     check('Service worker ativo', Boolean(swInfo.active), String(swState).slice(0, 140));
     check('Precache do app shell', (swInfo.entries ?? 0) >= 5, `${swInfo.entries ?? 0} entradas`);
+    const expectedScope = new URL('./', `${BASE}/`).href;
+    check('Escopo do service worker correto', swInfo.scope === expectedScope, `${swInfo.scope} (esperado ${expectedScope})`);
 
     // 7.1 Instalabilidade (Android/Chrome)
     const secureContext = await evaluate('window.isSecureContext');
