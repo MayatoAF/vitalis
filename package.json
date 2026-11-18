@@ -1,0 +1,33 @@
+{
+  "name": "vitalis",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Vitalis — PWA de cuidado diário: calorias, hidratação, carboidratos e glicemia, com visualizações three.js.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5178 --strictPort",
+    "build": "vite build",
+    "build:esbuild": "node scripts/build-esbuild.mjs",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --port 5178 --strictPort",
+    "serve": "node scripts/serve.mjs",
+    "serve:lan": "node scripts/serve.mjs --host 0.0.0.0",
+    "icons": "python scripts/make_icons.py",
+    "verify": "node scripts/verify.mjs",
+    "tunnel": "node scripts/tunnel.mjs",
+    "audit:mobile": "node scripts/mobile-audit.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.187.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.8"
+  }
+}

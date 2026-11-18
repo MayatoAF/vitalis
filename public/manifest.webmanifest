@@ -1,0 +1,41 @@
+{
+  "name": "Vitalis — cuidado diário",
+  "short_name": "Vitalis",
+  "description": "Controle de calorias, hidratação, carboidratos e glicemia. Offline, privado, no seu dispositivo.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#070b16",
+  "theme_color": "#070b16",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["health", "fitness", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Registrar água", "short_name": "Água", "url": "./#/hydration" },
+    { "name": "Registrar glicemia", "short_name": "Glicemia", "url": "./#/glucose" },
+    { "name": "Adicionar refeição", "short_name": "Refeição", "url": "./#/nutrition" }
+  ]
+}

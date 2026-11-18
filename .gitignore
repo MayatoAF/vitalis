@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.tmp/
+tools/
+.pnpm-store/
+verification*/
+mobile-audit/
+.github-token
+*.local
+.DS_Store
